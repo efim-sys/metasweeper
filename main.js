@@ -87,18 +87,18 @@ canvas.addEventListener("contextmenu", (e) => {
 });
 
 function checkWin() {
-	let a = 0;
+	let bombs = 0;
+  let flags = 0;
+  let a = 0;
 	for(let y = 1; y < 9; y++) {
 		for(let x = 1; x < 9; x++) {
-			if(!(grid[y][x][3] || grid[y][x][2])) {
-				a += 1;
-				
-			} 
+      a += grid[y][x][2];
+      flags += grid[y][x][3];
+      bombs += grid[y][x][0];
 			
 		}
 	}
-	console.log(a);
-	if(a==0){
+	if(flags == bombs && a == 64-bombs){
 		alert("You Win!");
 	}
 }
