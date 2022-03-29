@@ -83,7 +83,7 @@ canvas.addEventListener("click", (e) => {
 canvas.addEventListener("contextmenu", (e) => {
   var gridX = Math.floor((e.clientX - rect.left) / resolution);
   var gridY = Math.floor((e.clientY - rect.top) / resolution + 0.3);
-  if(grid[gridX + 1][gridY + 1][2])grid[gridX + 1][gridY + 1][3] = !grid[gridX + 1][gridY + 1][3];
+  if(!grid[gridX + 1][gridY + 1][2])grid[gridX + 1][gridY + 1][3] = !grid[gridX + 1][gridY + 1][3];
   console.log(gridY);
   console.log(gridX);
   render();
