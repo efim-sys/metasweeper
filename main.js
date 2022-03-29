@@ -109,6 +109,21 @@ function checkWin() {
   }
 }
 
+function openGrid() {
+  for (let y = 1; y < 9; y++) {
+    for (let x = 1; x < 9; x++) {
+      if(grid[y][x][0] && grid[y][x][2]) {
+        for (let i = -1; i < 2; i++) {
+          for (let j = -1; j < 2; j++) {
+            grid[x + i][y + j][2] = 1
+          }
+      }
+
+    }
+  }
+}
+}
+
 generateHints();
 
 render();
