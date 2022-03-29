@@ -105,10 +105,10 @@ function checkWin() {
   console.log("bombs: ");
   console.log(bombs);
   console.log("flags: ");
-  console.log(flags-1);
+  console.log(flags);
   console.log("opened: ");
   console.log(a);
-  if (flags-1 == bombs && a == 64 - bombs) {
+  if (flags == bombs && a == 64 - bombs) {
     alert("You Win!");
   }
 }
