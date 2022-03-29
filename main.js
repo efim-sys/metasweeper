@@ -9,7 +9,7 @@ let colors = ["#26cc31", "#fed93c", "#ff8200", "#f55343", "#e71919"];
 
 const rect = canvas.getBoundingClientRect();
 
-let grid = new Array(10).fill(null).map(() => new Array(10).fill(null).map(() => new Array(4).fill(0)));
+let grid = new Array(10).fill(null).map(() => new Array(10).fill(null).map(() => [0, 1, 0, 0]));
 
 resolution = 950 / 8;
 
@@ -44,16 +44,18 @@ async function generateHints() {
 
   for (let y = 1; y < 9; y++) {
     for (let x = 1; x < 9; x++) {
+		let a = 0;
       for (let i = -1; i < 2; i++) {
         for (let j = -1; j < 2; j++) {
           if (i === 0 && j === 0) {
             continue;
           }
           if (grid[x + i][y + j][0] == 1) {
-            grid[x][y][1] += 1;
+            a += 1;
           }
         }
       }
+	  grid[x][y][1] = a;
     }
   }
 }
@@ -65,13 +67,15 @@ function getRandomInt(max) {
 canvas.addEventListener("click", (e) => {
   var gridX = Math.floor((e.clientX - rect.left) / resolution);
   var gridY = Math.floor((e.clientY - rect.top) / resolution);
-  grid[gridX + 1][gridY + 1][2] = 1;
+  
   if (grid[gridX + 1][gridY + 1][0]) {
     alert("game over!");
     location.reload();
   }
   console.log(gridY);
   console.log(gridX);
+  openGrid(gridX + 1, gridY + 1);
+  grid[gridX + 1][gridY + 1][2] = 1;
   render();
   checkWin();
 });
@@ -79,7 +83,7 @@ canvas.addEventListener("click", (e) => {
 canvas.addEventListener("contextmenu", (e) => {
   var gridX = Math.floor((e.clientX - rect.left) / resolution);
   var gridY = Math.floor((e.clientY - rect.top) / resolution + 0.3);
-  grid[gridX + 1][gridY + 1][3] = !grid[gridX + 1][gridY + 1][3];
+  if(grid[gridX + 1][gridY + 1][2])grid[gridX + 1][gridY + 1][3] = !grid[gridX + 1][gridY + 1][3];
   console.log(gridY);
   console.log(gridX);
   render();
@@ -101,27 +105,28 @@ function checkWin() {
   console.log("bombs: ");
   console.log(bombs);
   console.log("flags: ");
-  console.log(flags);
+  console.log(flags-1);
   console.log("opened: ");
   console.log(a);
-  if (flags == bombs && a == 64 - bombs) {
+  if (flags-1 == bombs && a == 64 - bombs) {
     alert("You Win!");
   }
 }
 
-function openGrid() {
-  for (let y = 1; y < 9; y++) {
-    for (let x = 1; x < 9; x++) {
-      if(grid[y][x][0] && grid[y][x][2]) {
-        for (let i = -1; i < 2; i++) {
-          for (let j = -1; j < 2; j++) {
-            grid[x + i][y + j][2] = 1
-          }
-      }
-
-    }
+function openGrid(x, y) {
+	console.log("x: ");
+	console.log(x);
+	console.log("y: ");
+	console.log(y);
+	if(grid[x][y][1]==0 && grid[x][y][2]==0){
+	grid[x][y][2] = 1;
+	for (let i = -1; i < 2; i++) {
+			for (let j = -1; j < 2; j++) {
+				openGrid(x + i, y + j);
+				grid[x+i][y+j][2] = 1;
+			}
+	}
   }
-}
 }
 
 generateHints();
