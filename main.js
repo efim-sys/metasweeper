@@ -27,7 +27,7 @@ function render() {
       if (!grid[y + 1][x + 1][0] && grid[y + 1][x + 1][2]) ctx.fillText((grid[y + 1][x + 1][1]).toString(), y * resolution + 0.28 * resolution, x * resolution + 0.7 * resolution);
       ctx.fillStyle = colors[4];
       if (grid[y + 1][x + 1][3] && !grid[y + 1][x + 1][2]) ctx.fillText("⚑", y * resolution + 0.28 * resolution, x * resolution + 0.7 * resolution);
-      if (useNet) ctx.strokeStyle = "#1a1a1a";
+      if (useNet) ctx.strokeStyle = "#5d5d5d";
       else ctx.strokeStyle = "black";
       ctx.rect(y * resolution, x * resolution, resolution, resolution);
       ctx.stroke();
