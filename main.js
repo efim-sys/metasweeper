@@ -5,6 +5,8 @@ canvas.height = 950;
 
 let useNet = true;
 
+let firstClick = true;
+
 let colors = ["#26cc31", "#fed93c", "#ff8200", "#f55343", "#e71919"];
 
 const rect = canvas.getBoundingClientRect();
@@ -67,7 +69,12 @@ function getRandomInt(max) {
 canvas.addEventListener("click", (e) => {
   var gridX = Math.floor((e.clientX - rect.left) / resolution);
   var gridY = Math.floor((e.clientY - rect.top) / resolution);
-  
+  if (firstClick) {
+   while(grid[gridX][gridY][1]!=0){
+     grid = new Array(10).fill(null).map(() => new Array(10).fill(null).map(() => [0, 1, 0, 0]));
+     generateHints();
+ }
+ }
   if (grid[gridX + 1][gridY + 1][0]) {
     alert("game over!");
     location.reload();
