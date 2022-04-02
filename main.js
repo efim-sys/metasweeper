@@ -74,7 +74,9 @@ canvas.addEventListener("click", (e) => {
      grid = new Array(10).fill(null).map(() => new Array(10).fill(null).map(() => [0, 1, 0, 0]));
      generateHints();
  }
+firstClick=false;
  }
+
   if (grid[gridX + 1][gridY + 1][0]) {
     alert("game over!");
     location.reload();
