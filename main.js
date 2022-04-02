@@ -72,7 +72,7 @@ canvas.addEventListener("click", (e) => {
   if (firstClick) {
 	  console.log("firstClick");
 	  generateHints();
-   while(grid[gridX][gridY][1]!=0){
+   while(grid[gridX+1][gridY+1][1]!=0){
      grid = new Array(10).fill(null).map(() => new Array(10).fill(null).map(() => [0, 1, 0, 0]));
      generateHints();
  }
