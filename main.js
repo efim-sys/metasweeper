@@ -38,18 +38,18 @@ function render() {
 }
 
 async function generateHints() {
-  //for (let y = 1; y < 9; y++) {
-  //  for (let x = 1; x < 9; x++) {
-  //    grid[x][y][0] = +(getRandomInt(6) == 0);
-  // }
-  //}
+  for (let y = 1; y < 9; y++) {
+    for (let x = 1; x < 9; x++) {
+      grid[x][y][0] = +(getRandomInt(6) == 0);
+   }
+  }
 
-for(let i=0: i<8; i++) {
-  let x = getRandomInt(8)+1
-  let y = getRandomInt(8)+1
-  if(grid[x][y][0] == 1) i--
-  else grid[x][y][0] = 1
-}
+//for(let i=0: i<8; i++) {
+//  let x = getRandomInt(8)+1
+//  let y = getRandomInt(8)+1
+//  if(grid[x][y][0] == 1) i--
+//  else grid[x][y][0] = 1
+//}
 
   for (let y = 1; y < 9; y++) {
     for (let x = 1; x < 9; x++) {
