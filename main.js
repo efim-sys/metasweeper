@@ -44,7 +44,7 @@ async function generateHints() {
   // }
   //}
 
-for(let i=0: i<8; i++) {
+for(let i=0; i<8; i++) {
   let x = getRandomInt(8)+1
   let y = getRandomInt(8)+1
   if(grid[x][y][0] == 1) i--
