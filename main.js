@@ -5,7 +5,7 @@ canvas.height = 950;
 
 let useNet = true;
 
-let firstClick = true;
+let firstClick = true; 
 
 let colors = ["#26cc31", "#fed93c", "#ff8200", "#f55343", "#e71919"];
 
